@@ -22,9 +22,9 @@
 </template>
 
 <script>
-  export default {
-    name: 'NavBar'
-  }
+    export default {
+        name: 'NavBar'
+    }
 </script>
 
 <style>
@@ -36,6 +36,7 @@
         z-index: 100;
         position: sticky;
         top: 0;
+        background-color: white;
     }
 
     #logo {
