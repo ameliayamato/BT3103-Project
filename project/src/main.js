@@ -18,6 +18,8 @@ import OffersPage from './views/OffersPage.vue'
 import ContactPage from './views/ContactPage.vue' 
 import LoginPage from './views/LoginPage.vue' 
 import RegisterPage from './views/RegisterPage.vue' 
+import SubmissionPage1 from './views/SubmissionPage1.vue' 
+import SubmissionPage2 from './views/SubmissionPage2.vue' 
 
 const routes = [{
     path: '/',
@@ -46,6 +48,14 @@ const routes = [{
   {
     path: '/register',
     component: RegisterPage
+  },
+  {
+    path: '/submit1',
+    component: SubmissionPage1
+  },
+  {
+    path: '/submit2',
+    component: SubmissionPage2
   }
 ]
 
