@@ -8,6 +8,9 @@
                     <input type="email" class="form-control" v-model="contact.email" placeholder="Your Email">
                 </div>
                 <div class="form-group">
+                    <textarea class="form-control" v-model="contact.reason" rows="2" placeholder="Reason for Contact"></textarea>
+                </div>
+                <div class="form-group">
                     <textarea class="form-control" v-model="contact.message" rows="3" placeholder="Your message"></textarea>
                 </div>
             </form>
@@ -23,6 +26,7 @@ export default {
         return {
             contact:{
                 email:'',
+                reason: '',
                 message:''
             }
         }
@@ -30,8 +34,9 @@ export default {
     
     methods:{
         submit(){
-            if(this.contact.eamil !="" && this.contact.message != ""){
+            if(this.contact.email !="" && this.contact.reason != "" && this.contact.message != ""){
                 // send details to email
+                alert("Form submitted successfully!");
             }else{
                 alert("All fields are required");
             }
