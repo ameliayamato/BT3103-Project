@@ -18,12 +18,13 @@
                 </div>
             </form>
             
-            <button type="button" @click="submit" class="btn btn-primary btn-lg">Contact</button>
+            <button v-on:click.prevent="submit" class="btn btn-primary btn-lg">Contact</button>
         </div>
     </div>
 </template>
 
 <script lang="ts">
+import database from '../firebase.js'
 export default {
     data(){
         return {
@@ -36,9 +37,10 @@ export default {
     },
     
     methods:{
-        submit(){
+        submit : function(){
             if(this.contact.email !="" && this.contact.reason != "" && this.contact.message != ""){
                 // send details to email
+                database.collection('enquiries').add(this.contact);
                 alert("Form submitted successfully!");
             }else{
                 alert("All fields are required");
