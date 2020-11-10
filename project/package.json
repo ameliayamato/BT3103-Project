@@ -11,7 +11,12 @@
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.18.1",
     "core-js": "^3.6.5",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1",
+    "firebase": "^8.0.0",
+    "oct-vue-form": "^1.0.0",
     "vue": "^2.6.12",
+    "vue-form": "^4.10.3",
     "vue-router": "^3.4.7"
   },
   "devDependencies": {

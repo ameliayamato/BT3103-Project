@@ -1,5 +1,6 @@
 import firebase from 'firebase'
 
+
 const firebaseConfig = {
 	apiKey: "AIzaSyAnXyF8563785m4iqpq7Q99FkZis_STfmM",
     authDomain: "bt3103-final-project.firebaseapp.com",
@@ -14,3 +15,5 @@ const firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   var database = firebase.firestore();
   export default database;
+=======
+
