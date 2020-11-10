@@ -2,7 +2,10 @@
 <template>
     <div>
         <div class="container" style="padding:10%">
-            <h2>Contact Us</h2>
+            <h1>Contact Us / Make a Report</h1>
+            <br>
+            <br>
+            <h4>Our site administrators will respond to your concerns via email within 5 working days</h4>
             <form action="mailto:thecharityproject@gmail.com" method="post" enctype="text/plain">
                 <div class="form-group">
                     <input type="email" class="form-control" v-model="contact.email" placeholder="Your Email">
