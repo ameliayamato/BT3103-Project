@@ -1,9 +1,9 @@
 
 <template>
     <div class="contactpage">
-        <h3 id="title">Contact happyman99 - I need food</h3>
-        <p class="post-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p>
-        <b-form @submit="onSubmit" class="contact-form">
+        <h3 id="title">Contact {{request.username}} - {{request.subject}}</h3>
+        <p class="post-details">{{request.details}}</p>
+        <b-form @submit.prevent="onFormSubmit" class="contact-form">
             <p class="form-label">Name (optional)</p>
             <b-form-input v-model="name" placeholder="Enter your name"></b-form-input>
             <p class="form-label">Contact Number (optional)</p>
@@ -28,12 +28,15 @@
 </template>
 
 <script >
+import { db } from '../firebase';
+
 export default {
     name: 'SendContactRequestPage',
     props:['id'],
     data(){
         return {
-            contact:{
+            request: {},
+            message:{
                 name: '',
                 mobile: '',
                 email: '',
@@ -41,13 +44,23 @@ export default {
             }
         }
     },
+    created() {
+        let dbRef = db.collection('requests').doc(this.$route.params.id);
+        dbRef.get().then((doc) => {
+            this.request = doc.data();
+        }).catch((error) => {
+            console.log(error)
+        })
+
+    },
     
     methods:{
-        submit(){
-            if(this.contact.eamil !="" && this.contact.message != ""){
-                // send details to email
+        onFormSubmit(event){
+            event.preventDefault()
+            if(this.message.mobile =="" && this.message.email ==""){
+                alert("At least one contact field is required");
             }else{
-                alert("All fields are required");
+                console.log("hi");
             }
         }
     }

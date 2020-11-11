@@ -4,15 +4,17 @@
     <div class="signup-left">
       <img height="100" src="https://i.imgur.com/0MW0AFG.jpg" srcr="https://i.imgur.com/0MW0AFG.jpg">
     </div>
-    <form class="signup-right" @submit.prevent>
+    <form class="signup-right" @submit.prevent="onFormSubmit">
       <div class="h2">Sign up now</div>
+      <div v-if="error" class="alert alert-danger">{{error}}</div>
       <div class="form-group">
-        <input type="text" id="Email" placeholder="Enter your email" v-model="Email">
-        <label for="Email">Email Address</label>    
+        <input type="text" id="Username" placeholder="Enter a username" v-model="user.username">
       </div>
       <div class="form-group">
-        <input type="password" id="Password" placeholder="Enter a password" v-model="password">
-        <label for="Password">Password</label>    
+        <input type="text" id="Email" placeholder="Enter your email" v-model="user.email">
+      </div>
+      <div class="form-group">
+        <input type="password" id="Password" placeholder="Enter a password" v-model="user.password">
       </div>
 
       <div class="button-area">
@@ -23,14 +25,22 @@
 </template>
 
 <script>
-import axios from "axios";
+import { db } from '../firebase';
+
 export default {
   name: "SignupForm",
   template: "#signup-form",
   data() {
     return {
-      Email: "",
-      password: ""
+      error: null,
+      user: {
+        username: "",
+        email: "",
+        password: "",
+        inbox: [],
+        contact_number: "",
+        help_count: 0
+      } 
     };
   },
   beforeMount() {
@@ -39,9 +49,41 @@ export default {
       document.querySelector(".signup-wrapper").classList.toggle("open");
       init = 300;
     }, init);
+  },
+  methods:{
+    async onFormSubmit(event){
+        event.preventDefault()
+        if(this.user.username =="" && this.user.email =="" && this.user.password ==""){
+            alert("At least one field is required");
+        }else{
+          var collectionReference = db.collection("users");
+          var query = collectionReference.where("username", "==", this.user.username);
+          if ((await query.get()).empty) {
+            var query2 = collectionReference.where("email", "==", this.user.email);
+            if ((await query2.get()).empty){
+              collectionReference.add(this.user).then((docRef) => {
+                var newUser = {
+                  username: this.user.username,
+                  uid: docRef.id
+                }
+
+                // login user
+                this.$store.dispatch("login", newUser);
+
+                // redirect
+                this.$router.push('/')
+              });
+            } else {
+              this.error = "Email exist";
+            }
+          } else {
+            this.error = "Username exist";
+          }
+        }
+    }
   }
-  }
-};
+}
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to just this component -->
@@ -281,6 +323,10 @@ input[type="checkbox"]:checked:after {
 .btn-secondary:focus,
 .btn-secondary:hover {
   color: #1b984f;
+}
+
+.button-area {
+  background-color: white;
 }
 </style>
 

@@ -13,17 +13,31 @@
         </ul>
 
         <!-- right-aligned-links -->
-        <ul class="right-aligned-links">
+        <ul v-if="!user.loggedIn" class="right-aligned-links">
             <li id="login-btn"><a href="/login">Log In</a></li>
             <li id="register-btn"><a href="/register">Register</a></li>
+        </ul>
+
+        <!-- right-aligned-links -->
+        <ul v-if="user.loggedIn" class="right-aligned-links">
+            <li id="login-btn"><a href="/profile">Profile</a></li>
+            <li id="register-btn"><a href="/inbox">Inbox</a></li>
         </ul>
     </div>
 
 </template>
 
 <script>
+    import { mapGetters } from "vuex";
     export default {
-        name: 'NavBar'
+        name: 'NavBar',
+        
+        computed: {
+            // map `this.user` to `this.$store.getters.user`
+            ...mapGetters({
+                user: "user"
+            })
+        }
     }
 </script>
 
