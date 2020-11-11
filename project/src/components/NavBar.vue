@@ -4,7 +4,7 @@
 
         <!-- left-aligned-links -->
         <ul class="left-aligned-links">
-            <li><a href="/"><img id="logo" src="static/logo.jpg"></a></li>
+            <li><a href="/"><img id="logo" src="/static/logo.jpg"></a></li>
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/requests">Request for help</a></li>

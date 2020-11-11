@@ -19,8 +19,8 @@
                     </div>
                     <p class="listing-detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p>
                     <div class="listing-button-group">
-                        <b-button href="#" size="sm">Report</b-button>
-                        <b-button href="#" size="sm">Message</b-button>
+                        <b-button :href="'/report-offer/' + item.id" size="sm">Report</b-button>
+                        <b-button :href="'/send-contact-offer/' + item.id" size="sm">Contact</b-button>
                     </div>
                 </div>
             </div>
@@ -29,46 +29,23 @@
 </template>
 
 <script>
+    import { db } from '../firebase';
     export default {
         name: 'OffersPage',
         data() {
             return {
                 location_selected: null,
                 type_selected: null,
-                listings: [
-                    {
-                        id: 123,
-                        profile_id: "123",
-                        profile_name: "Bob",
-                        title: "I need Blankets",
-                        details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum",
-                        location: "Tampines",
-                        type: "Advance",
-                        posted_on: Date.now(),
-                    },
-                    {
-                        id: 124,
-                        profile_id: "123",
-                        profile_name: "Bob",
-                        title: "I need Pillows",
-                        details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum",
-                        location: "Marymount",
-                        type: "Basic",
-                        posted_on: Date.now(),
-                    },
-                    {
-                        id: 124,
-                        profile_id: "123",
-                        profile_name: "Bob",
-                        title: "I need Pillows",
-                        details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum",
-                        location: "Marymount",
-                        type: "Basic",
-                        posted_on: Date.now(),
-                    },
-
-                ]
+                listings: []
             }
+        },
+        created() {
+            let dbRef = db.collection('offers').doc(this.$route.params.id);
+            dbRef.get().then((doc) => {
+                this.request = doc.data();
+            }).catch((error) => {
+                console.log(error)
+            })
         },
         computed: {
             listingsProcessed() {
@@ -176,10 +153,10 @@ option {
 }
 
 .btn-secondary {
-    background-color: orange;
-    color: white;
+    background-color: orange !important;
+    color: white !important;
     margin-right: 10px;
-    border-color: orange;
+    border-color: orange !important;
 }
 
 .btn-secondary:hover {
