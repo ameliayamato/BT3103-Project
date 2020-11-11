@@ -2,7 +2,7 @@
 <template>
     <div>
         <div class="container" style="padding:10%">
-            <h1>Contact Us / Make a Report</h1>
+            <h1>Contact Us</h1>
             <br>
             <br>
             <h4>Our site administrators will respond to your concerns via email within 5 working days</h4>
