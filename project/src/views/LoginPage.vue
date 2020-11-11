@@ -58,7 +58,6 @@ export default {
             alert("FIll in all fields");
         }else{
           var user = null;
-          var userid = null;
           let dbRef = db.collection('users').where("email", "==", this.email).where("password", "==", this.password);
           dbRef.get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
