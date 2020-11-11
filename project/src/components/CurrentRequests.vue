@@ -26,7 +26,7 @@
 
 
 <script>
-import database from '../firebase.js'
+import { db } from '../firebase.js'
 
 export default {
   
@@ -40,7 +40,7 @@ export default {
   },
   methods:{
     fetchRequests:function(){
-      database.collection('requests').get().then((querySnapShot)=>{
+      db.collection('requests').get().then((querySnapShot)=>{
         let request={}
         querySnapShot.forEach(doc=>{
             request=doc.data()

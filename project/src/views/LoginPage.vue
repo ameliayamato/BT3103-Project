@@ -4,10 +4,12 @@
     <div class="login-left">
       <img height="100" src="https://i.imgur.com/0MW0AFG.jpg" srcr="https://i.imgur.com/0MW0AFG.jpg">
     </div>
-    <form class="login-right" @submit.prevent>
+    <form class="login-right" @submit.prevent="onFormSubmit">
       <div class="h2">Login</div>
+      <div v-if="error" class="alert alert-danger">{{error}}</div>
+
       <div class="form-group">
-        <input type="text" id="Email" placeholder="Email" v-model="Email">
+        <input type="text" id="Email" placeholder="Email" v-model="email">
         <label for="Email">Email Address</label>    
       </div>
       <div class="form-group">
@@ -19,21 +21,23 @@
         <div class="text-checkbox">Remember me</div>
       </div> 
       <div class="button-area">
-        <button class="btn btn-primary pull-right" @click="login()" >Login</button>
+        <button class="btn btn-primary pull-right" type="submit" >Login</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import { db } from '../firebase';
+
 export default {
   name: "LoginForm",
   template: "#login-form",
   data() {
     return {
+      error: null,
       rememberMe: false,
-      Email: "",
+      email: "",
       password: ""
     };
   },
@@ -48,25 +52,36 @@ export default {
     isRememberMe() {
       return this.rememberMe === true;
     },
-    login() {
-    
-      alert(this.Email + " " + this.password + " " + this.rememberMe);
-      axios
-        .post("http://api2.wisksolution.com/login", {
-          body: {
-            Email: this.Email,
-            password: this.password
-          }
-        })
-        .then(response => {
-          alert(response);
-        })
-        .catch(error => {
-          alert(error);
-        });
-    },
-    register() {
-      alert("Coming soon");
+    async onFormSubmit(event){
+        event.preventDefault()
+        if(this.email =="" || this.password ==""){
+            alert("FIll in all fields");
+        }else{
+          var user = null;
+          var userid = null;
+          let dbRef = db.collection('users').where("email", "==", this.email).where("password", "==", this.password);
+          dbRef.get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              user = doc.data()
+              user.id = doc.id;
+            });
+            if (user){
+              console.log(user)
+              // login user
+              this.$store.dispatch("login", user);
+              // redirect
+              this.$router.push('/')
+            } else {
+              this.error = "Incorrect Email or Password";
+            }
+
+            
+          }).catch((error) => {
+            console.log(error)
+              this.error = error;
+          })
+
+        }
     }
   }
 };

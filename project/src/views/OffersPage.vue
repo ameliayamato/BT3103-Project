@@ -17,7 +17,7 @@
                         <p class="listing-category-details-text">Location: {{item.location}}</p>
                         <p class="listing-category-details-text">Type: {{item.type}}</p>
                     </div>
-                    <p class="listing-detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p>
+                    <p class="listing-detail">{{item.details}}</p>
                     <div class="listing-button-group">
                         <b-button :href="'/report-offer/' + item.id" size="sm">Report</b-button>
                         <b-button :href="'/send-contact-offer/' + item.id" size="sm">Contact</b-button>
@@ -48,15 +48,18 @@
                         profile_pic: doc.data().profilepic,
                         title: doc.data().subject,
                         location: doc.data().location,
-                        type: doc.data().type
+                        type: doc.data().type,
+                        details: doc.data().details,
                     })
                 });
             })
         },
         computed: {
             listingsProcessed() {
-                if (!this.location_selected && !this.type_selected){
-                    return this.listings;
+                if (this.location_selected && this.type_selected){
+                    return this.listings.filter((listing_) =>{
+                        return listing_.type == this.type_selected && listing_.location == this.location_selected
+                    })
                 } else if (this.location_selected) {
                     return this.listings.filter((listing_) => {
                         return listing_.location == this.location_selected
@@ -66,9 +69,7 @@
                         return listing_.type == this.type_selected
                     })
                 } else {
-                    return this.listings.filter((listing_) =>{
-                        return listing_.type == this.type_selected && listing_.location == this.location_selected
-                    })
+                    return this.listings;
                 }
             },
             uniqueLocations(){
@@ -151,6 +152,10 @@ option {
     border-color: grey;
     padding: 10px;
     margin-bottom: 15px;
+}
+
+.listing-sub-container-2 {
+    width: 600px;
 }
 
 .profile-pic {

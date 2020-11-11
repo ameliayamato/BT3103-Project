@@ -18,7 +18,7 @@
       </div>
 
       <div class="button-area">
-        <button class="btn btn-primary pull-right" @click="signup()" >Sign up</button>
+        <button class="btn btn-primary pull-right" type="submit" >Sign up</button>
       </div>
     </form>
   </div>
@@ -39,7 +39,8 @@ export default {
         password: "",
         inbox: [],
         contact_number: "",
-        help_count: 0
+        help_count: 0,
+        request_count: 0
       } 
     };
   },

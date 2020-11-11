@@ -25,7 +25,11 @@ import SendContactRequestPage from './views/SendContactRequestPage.vue'
 import InboxPage from './views/InboxPage.vue' 
 import ReportSuccessPage from './views/ReportSuccessPage.vue' 
 import ProfilePage from './views/ProfilePage.vue' 
-
+import ContactSuccessPage from './views/ContactSuccessPage.vue' 
+import RequestForm from './views/RequestForm.vue'
+import OfferForm from './views/OfferForm.vue'
+import SubmissionPage1 from './views/SubmissionPage1.vue'
+import SubmissionPage2 from './views/SubmissionPage2.vue'
 
 
 const routes = [{
@@ -87,6 +91,26 @@ const routes = [{
   {
     path: '/report-success',
     component: ReportSuccessPage
+  },
+  {
+    path: '/contact-success',
+    component: ContactSuccessPage
+  },
+  {
+    path: '/requestform',
+    component: RequestForm
+  },
+  {
+    path: '/offerform',
+    component: OfferForm
+  },
+  {
+    path: '/request-made',
+    component: SubmissionPage1
+  },
+  {
+    path: '/offer-made',
+    component: SubmissionPage2
   }
 ]
 
