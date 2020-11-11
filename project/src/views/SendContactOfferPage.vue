@@ -3,7 +3,7 @@
     <div class="contactpage">
         <h3 id="title">Contact helpfulman99 - I have free food and new clothes</h3>
         <p class="post-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p>
-        <b-form @submit="onSubmit" class="contact-form">
+        <b-form @submit.prevent="onFormSubmit" class="contact-form">
             <p class="form-label">Name (optional)</p>
             <b-form-input v-model="name" placeholder="Enter your name"></b-form-input>
             <p class="form-label">Contact Number (optional)</p>
@@ -28,11 +28,14 @@
 </template>
 
 <script >
+import { db } from '../firebase';
+
 export default {
     name: 'SendContactOfferPage',
     props:['id'],
     data(){
         return {
+            offer: {},
             contact:{
                 name: '',
                 mobile: '',
@@ -41,7 +44,14 @@ export default {
             }
         }
     },
-    
+    created() {
+        let dbRef = db.collection('offers').doc(this.$route.params.id);
+        dbRef.get().then((doc) => {
+            this.offer = doc.data();
+        }).catch((error) => {
+            console.log(error)
+        })
+    },
     methods:{
         submit(){
             if(this.contact.eamil !="" && this.contact.message != ""){

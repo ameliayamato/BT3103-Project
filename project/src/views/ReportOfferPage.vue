@@ -45,7 +45,7 @@ export default {
             event.preventDefault()
             if(this.text !=""){
                 // append report to report array
-                this.offer.reports.push(text);
+                this.offer.reports.push(this.text);
                 
                 // update db
                 db.collection('offers').doc(this.$route.params.id)

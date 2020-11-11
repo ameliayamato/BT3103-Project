@@ -4,29 +4,33 @@ import App from './App.vue'
 import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import store from "./store";
+
 Vue.use(VueRouter)
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 
 // import views you want to serve up in `router-view`
-import HomePage from './views/HomePage.vue' 
 import AboutPage from './views/AboutPage.vue' 
 import RequestsPage from './views/RequestsPage.vue' 
 import OffersPage from './views/OffersPage.vue' 
 import ContactPage from './views/ContactPage.vue' 
 import LoginPage from './views/LoginPage.vue' 
-import RegisterPage from './views/RegisterPage.vue' 
+import SignupPage from './views/SignupPage.vue' 
 import ReportOfferPage from './views/ReportOfferPage.vue' 
 import ReportRequestPage from './views/ReportRequestPage.vue' 
 import SendContactOfferPage from './views/SendContactOfferPage.vue' 
 import SendContactRequestPage from './views/SendContactRequestPage.vue' 
 import InboxPage from './views/InboxPage.vue' 
 import ReportSuccessPage from './views/ReportSuccessPage.vue' 
+import ProfilePage from './views/ProfilePage.vue' 
+
+
 
 const routes = [{
     path: '/',
-    component: HomePage
+    component: RequestsPage
   },
   {
     path: '/about',
@@ -50,7 +54,7 @@ const routes = [{
   },
   {
     path: '/register',
-    component: RegisterPage
+    component: SignupPage
   },
   {
     path: '/report-offer/:id',
@@ -73,9 +77,12 @@ const routes = [{
     props: true
   },
   {
-    path: '/inbox/:userid',
-    component: InboxPage,
-    props: true
+    path: '/inbox',
+    component: InboxPage
+  },
+  {
+    path: '/profile',
+    component: ProfilePage 
   },
   {
     path: '/report-success',
@@ -90,7 +97,8 @@ const router = new VueRouter({
 
 new Vue({
   render: h => h(App), // mount the base component
-  router
+  router,
+  store
 }).$mount('#app')
 
 
