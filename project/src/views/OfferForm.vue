@@ -3,7 +3,7 @@
 		<div id="text">
 			What are you offering?
 		</div>
-		<form id="form">
+		<form @submit.prevent="onFormSubmit" id="form">
 			<div>
 				<input type="text" id="location" placeholder="Location" v-model="message" ref="location">
 				<img @mouseover="hover1 = true" @mouseleave="hover1 = false" id="information" src="/static/information.png">
@@ -15,11 +15,11 @@
 			</div>
 			<span v-if="hover2">Type of help you can provide</span>
 			<div>
-				<textarea id="details" v-model="message" rows="10" placeholder="Tell us more about the type of offer" ref="details"></textarea>
+				<textarea id="details" v-model="text" rows="10" placeholder="Tell us more about the type of offer" ref="details"></textarea>
 				<img @mouseover="hover3 = true" @mouseleave="hover3 = false" id="information" src="/static/information.png">
 			</div>
 			<span v-if="hover3">Fill in any important details of your offer</span>
-			<button id="submit" @click="submit()" >Submit</button>
+			<button id="submit">Submit</button>
 		</form>
 	</div>
 </template>
@@ -37,18 +37,19 @@ export default {
     };
   },
   methods:{
-	submit:function(){
-		var ID = function() {
-			return Math.random().toString(36).substr(2, 10);
-		};
-		let key = ID()
-		database.collection('offer').ref('offers/' + key).add({
-			location: this.$refs.location,
-			subject: this.$refs.subject,
-			details: this.$refs.details,
-		})
+	onFormSubmit(event){
+		event.preventDefault()
+		if(this.text !=""){
+
+			// update db
+			database.collection('offer').add({
+				location: this.$ref.location,
+				subject: this.$ref.subject,
+				details: this.$ref.details
+				})
+			}
+		}
 	}
-  }
 }
 </script>
 
