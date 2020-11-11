@@ -1,6 +1,5 @@
 import firebase from 'firebase'
 
-
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
 	apiKey: "AIzaSyAnXyF8563785m4iqpq7Q99FkZis_STfmM",
@@ -14,5 +13,5 @@ const firebaseConfig = {
   };
 
 firebase.initializeApp(firebaseConfig);
-var database = firebase.firestore();
-export default database;
+var db = firebase.firestore();
+export default db;
