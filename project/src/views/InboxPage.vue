@@ -1,20 +1,45 @@
 <template>
     <div class="inboxpage">
         <h4 id="title">Inbox</h4>
-        <div class="message-container">
-            <p class="message-title">HAPPYMAN replied to your OFFER - I HAVE FOOD</p>
-            <p class="message-date">Date: 10/11/20</p>
-            <p class="message-email">Email: <a href="mailto:webmaster@example.com">webmaster@example.com</a></p>
-            <p class="message-contact">Contact: 83459684</p>
-            <p class="message-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p>
+        <div v-for="item in user.inbox" v-bind:key="item.post_title" class="message-container">
+            <p class="message-title">{{item.from_username}} replied to your post - {{item.post_title}}</p>
+            <p class="message-email">Email: <a :href="item.email">{{item.email}}</a></p>
+            <p class="message-contact">Contact: {{item.contact_number}}</p>
+            <p class="message-details">{{item.message}}</p>
         </div>
     </div>
 </template>
 
 <script>
+    import { mapGetters } from "vuex";
+    import { db } from '../firebase';
+
     export default {
         name: 'InboxPage',
+        data(){
+            return ({
+                user: {}
+            })
+        },
+        computed: {
+            // map `this.username` to `this.$store.getters.user`
+            ...mapGetters({
+                user_: "user"
+            }),
+        },
+        created() {
+            console.log(this.user_.uid)
+            let dbRef = db.collection('users').doc(this.user_.uid);
+            dbRef.get().then((doc) => {
+                this.user = doc.data();
+            }).catch((error) => {
+                console.log(error)
+            })
+
+            console.log(this.user)
+        },
     }
+
 </script>
 
 <style>

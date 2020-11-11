@@ -25,7 +25,7 @@ export default new Vuex.Store({
     SET_USER(state, data) {
       if (data) {
         state.user.username = data.username;
-        state.user.uid = data.uid;
+        state.user.uid = data.id;
       } else {
         state.user.username = null;
         state.user.uid = null;

@@ -3,7 +3,10 @@
         <h3 id="title">Details</h3>
         <form @submit.prevent="onFormSubmit">
             <div v-if="error" class="alert alert-danger">{{error}}</div>
-            <div v-if="update" class="alert alert-danger">{{update}}</div>
+            <div v-if="update" class="alert alert-success">{{update}}</div>
+            <div class="form-group">
+                <input type="text" id="Cheryl" placeholder="Enter your name" v-model="user.name">
+            </div>
             <div class="form-group">
                 <input type="text" id="Username" placeholder="Enter a username" v-model="user.username">
             </div>
@@ -44,6 +47,7 @@ export default {
         })
     },
     created() {
+        console.log(this.user_.uid)
         let dbRef = db.collection('users').doc(this.user_.uid);
         dbRef.get().then((doc) => {
             this.user = doc.data();
