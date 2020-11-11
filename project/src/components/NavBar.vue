@@ -10,6 +10,8 @@
             <li><a href="/requests">Request for help</a></li>
             <li><a href="/offers">Offers for help</a></li>
             <li><a href="/contact">Contact Us</a></li>
+            <li><a href="/offerform">Make an offer</a></li>
+            <li><a href="/requestform">Make a request</a></li>
         </ul>
 
         <!-- right-aligned-links -->
