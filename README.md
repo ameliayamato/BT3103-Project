@@ -1,7 +1,24 @@
-# BT3103-Project: The Charity Project 
+# project
 
-##### Team Members: Amelia Yamato Leow Mei-li, Lim Wen Le, See Chian Ting Cheryl, Tara Kwong Shue-Yinh
+## Project setup
+```
+npm install
+```
 
-## Problem Definition
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-## Core Functionalities
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

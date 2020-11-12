@@ -65,11 +65,10 @@ export default {
             if(this.offer.text !="" && this.offer.location != "" && this.offer.type !="" && this.offer.subject != ""){
                 var collectionReference = db.collection("offers");
                 this.offer.username = this.user_.username;
-                this.offer.userid = this.user_.uid;
+				this.offer.userid = this.user_.uid;
 
                 collectionReference.add(this.offer).then(()=>{
                     this.$router.push('/offer-made');
-
                 });
             }
         }
