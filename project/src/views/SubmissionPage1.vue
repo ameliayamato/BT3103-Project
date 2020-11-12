@@ -18,7 +18,7 @@ export default {
     },
     data: function() {
         return {
-            message1: 'Your request is sucessfully submitted!',
+            message1: 'Your request is successfully submitted!',
             message2: 'You can take a look at some of the current offers for help',
         }
     }
