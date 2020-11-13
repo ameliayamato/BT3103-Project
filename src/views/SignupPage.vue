@@ -65,7 +65,7 @@ export default {
               collectionReference.add(this.user).then((docRef) => {
                 var newUser = {
                   username: this.user.username,
-                  uid: docRef.id
+                  id: docRef.id
                 }
 
                 // login user
