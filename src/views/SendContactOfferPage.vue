@@ -131,9 +131,9 @@ export default {
 }
 
 .post-details {
-    width: 50%;
     color: grey;
     padding: 10px;
+    text-align: center;
 }
 
 .contact-form {

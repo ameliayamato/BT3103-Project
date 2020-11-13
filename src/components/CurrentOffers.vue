@@ -134,7 +134,7 @@ button {
     border-style: solid;
     border-width: 0px;
     border-radius: 10px;
-    background-color: #ffb5a7;
+    background-color: orange;
     color: white;
     margin: auto;
 }

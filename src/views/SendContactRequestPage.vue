@@ -138,6 +138,7 @@ export default {
     width: 50%;
     color: grey;
     padding: 10px;
+    text-align: center;
 }
 
 .contact-form {
