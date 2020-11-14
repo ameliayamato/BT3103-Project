@@ -19,7 +19,7 @@
             
 
             <div class="button-area">
-                <button class="btn btn-primary pull-right" type="submit" >Update</button>
+                <button class="btn btn-primary pull-right" type="submit">Update</button>
             </div>
         </form>
 
@@ -92,6 +92,19 @@ export default {
 
 .logout {
     margin-top: 30px;
+}
+
+.button-area {
+    display: inline-block;
+}
+
+form {
+    text-align: center;
+}
+
+button {
+    display: inline-flex;
+    align-items: center; 
 }
 
 </style>

@@ -19,8 +19,8 @@
                     </div>
                     <p class="listing-detail">{{item.details}}</p>
                     <div class="listing-button-group">
-                        <b-button :href="'/report-offer/' + item.id" size="sm">Report</b-button>
-                        <b-button :href="'/send-contact-offer/' + item.id" size="sm">Contact</b-button>
+                        <b-button :href="'/report-offer/' + item.id" size="sm"><span>Report</span></b-button>
+                        <b-button :href="'/send-contact-offer/' + item.id" size="sm"><span>Contact</span></b-button>
                     </div>
                 </div>
             </div>
@@ -199,6 +199,11 @@ option {
 .listing-button-group {
     display: flex;
     justify-content: flex-end;
+}
+
+span {
+    display: inline-flex;
+    align-items: center;
 }
 
 .listing-category-details {

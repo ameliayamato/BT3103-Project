@@ -2,6 +2,7 @@
     <div class="reportpage">
         <h3 id="title">Report Post</h3>
         <p class="report-post-title">Title: {{offer.subject}}</p>
+        <p class="post-details">Post details:<br>{{offer.details}}</p>
         <b-form @submit.prevent="onFormSubmit" class="report-form">
             <b-form-textarea
             id="report-textarea"
