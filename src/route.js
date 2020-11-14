@@ -13,7 +13,7 @@ import ReportSuccessPage from './views/ReportSuccessPage.vue'
 import ProfilePage from './views/ProfilePage.vue' 
 import RequestForm from './views/RequestForm.vue'
 import OfferForm from './views/OfferForm.vue'
-
+import Dashboard from './views/Dashboard.vue'
 
 const routes = [{
     path: '/',
@@ -82,5 +82,9 @@ const routes = [{
   {
     path: '/offerform',
     component: OfferForm
+  },
+  {
+    path: '/dashboard',
+    component: Dashboard
   }
 ]
