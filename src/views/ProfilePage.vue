@@ -94,10 +94,6 @@ export default {
     margin-top: 30px;
 }
 
-.button-area {
-    display: inline-block;
-}
-
 form {
     text-align: center;
 }
