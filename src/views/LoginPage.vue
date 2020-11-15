@@ -288,8 +288,10 @@ input[type="checkbox"]:checked:after {
 }
 .button-area {
   display: flex;
+  position: relative;
   justify-content: space-between;
   margin-top: 30px;
+  right: -50px
 }
 .btn {
   font-family: inherit;

@@ -22,7 +22,7 @@
                 <button class="btn btn-primary pull-right" type="submit" >Update</button>
             </div>
         </form>
-
+        <router-link to="/dashboard" tag="button" class="logout btn btn-primary pull-right">Dashboard</router-link>
         <button class="logout btn btn-primary pull-right" @click="logout" >Logout</button>
     </div>
     
@@ -82,7 +82,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 .profilepage {
     display: flex;
     flex-direction: column;
