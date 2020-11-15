@@ -18,7 +18,7 @@
       </div>
 
       <div class="button-area">
-        <button class="btn btn-primary pull-right" type="submit" >Sign up</button>
+        <button class="btn btn-primary pull-right" type="submit"><span>Sign up</span></button>
       </div>
     </form>
   </div>
@@ -328,6 +328,10 @@ input[type="checkbox"]:checked:after {
 
 .button-area {
   background-color: white;
+}
+
+button {
+    align-items: center;
 }
 </style>
 
