@@ -1,6 +1,6 @@
 <template>
     <div class="profilepage">
-        <h3 id="title">Details</h3>
+        <h3 id="title">Your details</h3>
         <form @submit.prevent="onFormSubmit">
             <div v-if="error" class="alert alert-danger">{{error}}</div>
             <div v-if="update" class="alert alert-success">{{update}}</div>
@@ -18,8 +18,8 @@
             </div>
             
 
-            <div class="button-area">
-                <button class="btn btn-primary pull-right" type="submit">Update</button>
+            <div class="submitbtn-area">
+                <button class="btn btn-primary pull-right" type="submit" id="submitbtn">Update</button>
             </div>
         </form>
         <router-link to="/dashboard" tag="button" class="logout btn btn-primary pull-right">Dashboard</router-link>
@@ -82,6 +82,7 @@ export default {
     }
 }
 </script>
+
 <style scoped>
 .profilepage {
     display: flex;
@@ -95,12 +96,24 @@ export default {
 }
 
 form {
+    margin:auto 0;
     text-align: center;
 }
 
-button {
-    display: inline-flex;
-    align-items: center; 
+#submitbtn {
+  color: #fff;
+  background: linear-gradient(198.08deg, #22bf64 45.34%, #e281e7 224.21%);
+  box-shadow: 10px 2px 10px rgba(0, 0, 0, 0.1);
+}
+#submitbtn:hover,
+#submitbtn:focus {
+  color: #fff;
+  background: linear-gradient(198.08deg, #1b984f 45.34%, #e281e7 224.21%);
 }
 
+.submitbtn-area {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
 </style>
