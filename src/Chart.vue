@@ -15,7 +15,7 @@ export default {
 		},
 	},
 	mounted() {		
-		this.renderChart(this.chartdata, this.options);
+		this.renderChart(this.chartdata, this.options, {maintainAspectRatio:false});
 	},
 };
 </script>

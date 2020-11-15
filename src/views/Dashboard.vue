@@ -1,9 +1,10 @@
 <template>
   <div class="container">
     <chart
-      v-if="loaded"
-      :chartdata="chartdata"
-      :options="options"/>
+		v-if="loaded"
+		:chartdata="chartdata"
+		:options="options"
+		width="500" height="300"/>
   </div>
 </template>
 
@@ -60,10 +61,10 @@ export default {
 						},
 						layout:	{
 							padding: {
-								left: 5,
+								left: 2,
 								right: 0,
 								top: 0,
-								bottom: 10,
+								bottom: 2,
 							},
 						},
 					},

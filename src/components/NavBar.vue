@@ -22,7 +22,9 @@
 
         <!-- right-aligned-links -->
         <ul v-if="user.loggedIn" class="right-aligned-links">
-            <li id="login-btn"><a href="/profile">Profile</a></li>
+            <li id="login-btn">
+                <a href="/profile">{{this.name}}</a>
+            </li>
             <li id="register-btn"><a href="/inbox">Inbox</a></li>
         </ul>
     </div>
@@ -33,13 +35,23 @@
     import { mapGetters } from "vuex";
     export default {
         name: 'NavBar',
-        
+        props: {
+            name: {
+                type: String,
+                default: null
+            },
+        },      
         computed: {
             // map `this.user` to `this.$store.getters.user`
             ...mapGetters({
                 user: "user"
             })
-        }
+        },
+        async mounted()	{
+            if(this.user.loggedIn) {
+                this.name = this.user.username
+            }
+        }  
     }
 </script>
 
